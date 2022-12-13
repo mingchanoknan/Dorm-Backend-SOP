@@ -18,8 +18,8 @@
         <module name="reserve-service" />
         <module name="api-gateway" />
         <module name="parcel-service" />
-        <module name="report-service" />
         <module name="room-service" />
+        <module name="report-service" />
         <module name="meter-service" />
         <module name="rent-service" />
       </profile>
