@@ -2,9 +2,9 @@ package com.dorm.rent.rentservice.controller;
 
 
 
-import com.example.backenddorm.pojo.Rent;
-import com.example.backenddorm.pojo.Reserve;
-import com.example.backenddorm.service.RentService;
+
+import com.dorm.rent.rentservice.pojo.Rent;
+import com.dorm.rent.rentservice.service.RentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
