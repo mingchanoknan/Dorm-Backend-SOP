@@ -17,15 +17,17 @@ public class ReportController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    public ReportController(ReportService reportService) {
+
+    public ReportController(ReportService reportService, RabbitTemplate rabbitTemplate) {
         this.reportService = reportService;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @GetMapping("/getall")
     public List<Report> getAllReport(){
-        rabbitTemplate.convertAndSend("ReportExchange","getReport",reportService.getAllReport());
+        List<Report> reports = (List<Report>) rabbitTemplate.convertSendAndReceive("ReportExchange","getReport",reportService.getAllReport());
         System.out.println("get");
-        return reportService.getAllReport();
+        return reports;
     }
     @PostMapping("/add")
     public String addReport(@RequestBody Report report){
@@ -33,16 +35,16 @@ public class ReportController {
         System.out.println(report);
         return result;
     }
-    @PutMapping("/update")
-    public String updateReport(@RequestBody Report report){
-        rabbitTemplate.convertAndSend("ReportExchange","updateReport",reportService.updateReport(report));
-        return reportService.updateReport(report);
-    }
-
-    @GetMapping("/status")
-    public List<Report> getByStatus(@RequestParam boolean status){
-        rabbitTemplate.convertAndSend("ReportExchange","statusReport",reportService.getByStatus(status));
-        return reportService.getByStatus(status);
-    }
+//    @PutMapping("/update")
+//    public String updateReport(@RequestBody Report report){
+//        rabbitTemplate.convertAndSend("ReportExchange","updateReport",reportService.updateReport(report));
+//        return reportService.updateReport(report);
+//    }
+//
+//    @GetMapping("/status")
+//    public List<Report> getByStatus(@RequestParam boolean status){
+//        rabbitTemplate.convertAndSend("ReportExchange","statusReport",reportService.getByStatus(status));
+//        return reportService.getByStatus(status);
+//    }
 
 }
