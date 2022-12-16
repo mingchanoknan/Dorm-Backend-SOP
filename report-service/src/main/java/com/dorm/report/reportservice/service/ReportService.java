@@ -2,6 +2,7 @@ package com.dorm.report.reportservice.service;
 
 import com.dorm.report.reportservice.pojo.Report;
 import com.dorm.report.reportservice.repository.ReportRepository;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -17,10 +18,12 @@ public class ReportService {
     public ReportService(ReportRepository reportRepository) {
         this.reportRepository = reportRepository;
     }
-
+    @RabbitListener(queues="getAllReportQueue")
     public List<Report> getAllReport(){
+
         return reportRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
     }
+    @RabbitListener(queues = "addReportQueue")
     public String addReport(Report report){
         try {
             reportRepository.insert(report);
@@ -29,6 +32,7 @@ public class ReportService {
             return "add report failed";
         }
     }
+    @RabbitListener(queues = "updateReportQueue")
     public String updateReport(Report report){
         try {
             reportRepository.save(report);
@@ -38,6 +42,7 @@ public class ReportService {
             return "update report failed";
         }
     }
+    @RabbitListener(queues = "statusReportQueue")
     public List<Report> getByStatus(boolean status){
         try {
             return reportRepository.findByStatus(status);
