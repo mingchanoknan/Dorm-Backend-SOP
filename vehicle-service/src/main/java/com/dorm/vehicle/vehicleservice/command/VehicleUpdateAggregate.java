@@ -24,6 +24,7 @@ public class VehicleUpdateAggregate {
     }
     @CommandHandler
     public VehicleUpdateAggregate(UpdateCommandVehicle updateCommandVehicle) {
+        System.out.println("Update Command Handler");
         VehicleUpdatedEvent vehicleUpdatedEvent = new VehicleUpdatedEvent();
         BeanUtils.copyProperties(updateCommandVehicle, vehicleUpdatedEvent);
         AggregateLifecycle.apply(vehicleUpdatedEvent);

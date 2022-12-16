@@ -24,4 +24,12 @@ public class VehicleEventsHandler {
         BeanUtils.copyProperties(vehicleCreatedEvent, vehicle);
         vehicleRepository.save(vehicle);
     }
+
+    @EventHandler
+    public void on (VehicleUpdatedEvent vehicleUpdatedEvent) {
+        System.out.println("To Mongo Store");
+        Vehicle vehicle = new Vehicle();
+        BeanUtils.copyProperties(vehicleUpdatedEvent, vehicle);
+        vehicleRepository.save(vehicle);
+    }
 }
