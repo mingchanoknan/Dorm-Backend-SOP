@@ -1,6 +1,6 @@
 package com.dorm.vehicle.vehicleservice.controller;
 
-import com.dorm.vehicle.vehicleservice.pojo.Vehicle;
+import com.dorm.vehicle.vehicleservice.core.pojo.Vehicle;
 import com.dorm.vehicle.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +31,7 @@ public class VehicleController {
         }
     }
 
-    @RequestMapping(value ="/updateVehicle", method = RequestMethod.POST)
+    @RequestMapping(value ="/updateVehicle", method = RequestMethod.PUT)
     public boolean updateVehicle(@RequestBody Vehicle vehicle){
         try {
             vehicleService.updateVehicle(vehicle);

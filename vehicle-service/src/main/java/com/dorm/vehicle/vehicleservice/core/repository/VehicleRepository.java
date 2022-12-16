@@ -1,6 +1,6 @@
-package com.dorm.vehicle.vehicleservice.repository;
+package com.dorm.vehicle.vehicleservice.core.repository;
 
-import com.dorm.vehicle.vehicleservice.pojo.Vehicle;
+import com.dorm.vehicle.vehicleservice.core.pojo.Vehicle;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

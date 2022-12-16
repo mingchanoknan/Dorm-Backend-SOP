@@ -1,4 +1,4 @@
-package com.dorm.vehicle.vehicleservice.pojo;
+package com.dorm.vehicle.vehicleservice.core.pojo;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
