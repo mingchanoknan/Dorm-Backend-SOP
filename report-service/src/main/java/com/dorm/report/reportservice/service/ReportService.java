@@ -26,27 +26,28 @@ public class ReportService {
     public String addReport(Report report){
         try {
             reportRepository.insert(report);
+            System.out.println("Finish");
             return "Add report successfully";
         }catch (Exception e){
             return "add report failed";
         }
     }
-    @RabbitListener(queues = "updateReportQueue")
-    public String updateReport(Report report){
-        try {
-            reportRepository.save(report);
-//            System.out.println(report);
-            return "update report successfully";
-        }catch (Exception e){
-            return "update report failed";
-        }
-    }
-    @RabbitListener(queues = "statusReportQueue")
-    public List<Report> getByStatus(boolean status){
-        try {
-            return reportRepository.findByStatus(status);
-        }catch (Exception e){
-            return null;
-        }
-    }
+//    @RabbitListener(queues = "updateReportQueue")
+//    public String updateReport(Report report){
+//        try {
+//            reportRepository.save(report);
+////            System.out.println(report);
+//            return "update report successfully";
+//        }catch (Exception e){
+//            return "update report failed";
+//        }
+//    }
+//    @RabbitListener(queues = "statusReportQueue")
+//    public List<Report> getByStatus(boolean status){
+//        try {
+//            return reportRepository.findByStatus(status);
+//        }catch (Exception e){
+//            return null;
+//        }
+//    }
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 @RestController
-@RequestMapping("report")
 public class ReportController {
     @Autowired
     public ReportService reportService;
@@ -25,15 +24,15 @@ public class ReportController {
 
     @GetMapping("/getall")
     public List<Report> getAllReport(){
-        List<Report> reports = (List<Report>) rabbitTemplate.convertSendAndReceive("ReportExchange","getReport",reportService.getAllReport());
+        List<Report> reports = (List<Report>) rabbitTemplate.convertSendAndReceive("ReportExchange","getReport","");
         System.out.println("get");
         return reports;
     }
     @PostMapping("/add")
     public String addReport(@RequestBody Report report){
-       String result = String.valueOf(rabbitTemplate.convertSendAndReceive("ReportExchange","addReport",reportService.addReport(report)));
+        Object result = rabbitTemplate.convertSendAndReceive("ReportExchange","addReport", report);
         System.out.println(report);
-        return result;
+        return (String) result;
     }
 //    @PutMapping("/update")
 //    public String updateReport(@RequestBody Report report){
