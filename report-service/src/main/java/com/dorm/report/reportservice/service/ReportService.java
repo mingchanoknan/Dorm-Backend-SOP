@@ -18,12 +18,12 @@ public class ReportService {
     public ReportService(ReportRepository reportRepository) {
         this.reportRepository = reportRepository;
     }
-    @RabbitListener(queues="getAllReportQueue")
+  @RabbitListener(queues="getAllReportQueue")
     public List<Report> getAllReport(){
         return reportRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
     }
-    @RabbitListener(queues = "addReportQueue")
-    public String addReport(Report report){
+   @RabbitListener(queues = "addReportQueue")
+    public String addReports(Report report){
         try {
             reportRepository.insert(report);
             System.out.println("Finish");
@@ -32,22 +32,22 @@ public class ReportService {
             return "add report failed";
         }
     }
-//    @RabbitListener(queues = "updateReportQueue")
-//    public String updateReport(Report report){
-//        try {
-//            reportRepository.save(report);
-////            System.out.println(report);
-//            return "update report successfully";
-//        }catch (Exception e){
-//            return "update report failed";
-//        }
-//    }
-//    @RabbitListener(queues = "statusReportQueue")
-//    public List<Report> getByStatus(boolean status){
-//        try {
-//            return reportRepository.findByStatus(status);
-//        }catch (Exception e){
-//            return null;
-//        }
-//    }
+   @RabbitListener(queues = "updateReportQueue")
+   public String updateReport(Report report){
+        try {
+            reportRepository.save(report);
+           System.out.println(report);
+            return "update report successfully";
+        }catch (Exception e){
+            return "update report failed";
+        }
+    }
+    @RabbitListener(queues = "statusReportQueue")
+    public List<Report> getByStatus(boolean status){
+        try {
+            return reportRepository.findByStatus(status);
+        }catch (Exception e){
+            return null;
+        }
+    }
 }

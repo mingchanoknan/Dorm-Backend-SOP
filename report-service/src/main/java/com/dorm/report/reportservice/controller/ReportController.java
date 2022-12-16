@@ -34,16 +34,23 @@ public class ReportController {
         System.out.println(report);
         return (String) result;
     }
-//    @PutMapping("/update")
-//    public String updateReport(@RequestBody Report report){
+    @PutMapping("/update")
+   public String updateReport(@RequestBody Report report){
 //        rabbitTemplate.convertAndSend("ReportExchange","updateReport",reportService.updateReport(report));
+Object result = rabbitTemplate.convertSendAndReceive("ReportExchange","updateReport", report);
+        System.out.println(report);
+        return (String) result;
 //        return reportService.updateReport(report);
-//    }
-//
-//    @GetMapping("/status")
-//    public List<Report> getByStatus(@RequestParam boolean status){
+   }
+
+   @GetMapping("/status")
+   public List<Report> getByStatus(@RequestParam boolean status){
 //        rabbitTemplate.convertAndSend("ReportExchange","statusReport",reportService.getByStatus(status));
 //        return reportService.getByStatus(status);
-//    }
+       List<Report> reports = (List<Report>) rabbitTemplate.convertSendAndReceive("ReportExchange","statusReport",status);
+       System.out.println("get");
+       return reports;
+
+   }
 
 }
