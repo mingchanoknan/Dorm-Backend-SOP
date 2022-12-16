@@ -20,7 +20,6 @@ public class ReportService {
     }
     @RabbitListener(queues="getAllReportQueue")
     public List<Report> getAllReport(){
-
         return reportRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
     }
     @RabbitListener(queues = "addReportQueue")
