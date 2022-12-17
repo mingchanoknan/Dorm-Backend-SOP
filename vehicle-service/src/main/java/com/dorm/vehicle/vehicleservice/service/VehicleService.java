@@ -1,6 +1,7 @@
 package com.dorm.vehicle.vehicleservice.service;
 
 import com.dorm.vehicle.vehicleservice.command.CreateCommandVehicle;
+import com.dorm.vehicle.vehicleservice.command.DeleteCommandVehicle;
 import com.dorm.vehicle.vehicleservice.command.UpdateCommandVehicle;
 import com.dorm.vehicle.vehicleservice.core.pojo.Vehicle;
 import com.dorm.vehicle.vehicleservice.core.repository.VehicleRepository;
@@ -70,7 +71,16 @@ public class VehicleService {
 
     public boolean deleteVehicle(Vehicle vehicle){
         try {
-            vehicleRepository.delete(vehicle);
+            System.out.println("Delete Service");
+            DeleteCommandVehicle deleteCommandVehicle = DeleteCommandVehicle.builder()
+                    ._Id(vehicle.get_Id())
+                    .license_plate(vehicle.getLicense_plate())
+                    .brand(vehicle.getBrand())
+                    .color(vehicle.getColor())
+                    .room_number(vehicle.getRoom_number())
+                    .build();
+            commandGateway.sendAndWait(deleteCommandVehicle);
+//            vehicleRepository.delete(vehicle);
             return true;
         }catch (Exception e){
             return false;

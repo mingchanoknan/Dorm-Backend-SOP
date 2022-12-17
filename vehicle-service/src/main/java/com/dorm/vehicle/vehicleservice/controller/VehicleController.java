@@ -41,7 +41,7 @@ public class VehicleController {
         }
     }
 
-    @RequestMapping(value ="/deleteVehicle", method = RequestMethod.POST)
+    @RequestMapping(value ="/deleteVehicle", method = RequestMethod.DELETE)
     public boolean deleteVehicle(@RequestBody Vehicle vehicle){
         try {
             vehicleService.deleteVehicle(vehicle);
