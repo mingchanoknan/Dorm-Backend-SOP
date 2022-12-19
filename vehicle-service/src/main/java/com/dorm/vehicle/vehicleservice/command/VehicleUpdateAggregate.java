@@ -13,7 +13,7 @@ import org.springframework.beans.BeanUtils;
 @Aggregate
 public class VehicleUpdateAggregate {
     @AggregateIdentifier
-    private String _Id;
+    private String _id;
     private String license_plate;
     private String color;
     private String brand;
@@ -32,7 +32,8 @@ public class VehicleUpdateAggregate {
 
     @EventSourcingHandler
     public void on(VehicleUpdatedEvent vehicleUpdatedEvent) {
-        this._Id = vehicleUpdatedEvent.get_Id();
+        System.out.println("To Event Store (update vehicle)");
+        this._id = vehicleUpdatedEvent.get_id();
         this.license_plate = vehicleUpdatedEvent.getLicense_plate();
         this.brand = vehicleUpdatedEvent.getBrand();
         this.color = vehicleUpdatedEvent.getColor();

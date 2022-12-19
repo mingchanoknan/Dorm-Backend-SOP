@@ -1,8 +1,8 @@
-package com.dorm.reserve.reserveservice.repository;
+package com.dorm.reserve.reserveservice.core.repository;
 
 
 
-import com.dorm.reserve.reserveservice.pojo.Reserve;
+import com.dorm.reserve.reserveservice.core.pojo.Reserve;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,7 @@
 package com.dorm.vehicle.vehicleservice.controller;
 
 import com.dorm.vehicle.vehicleservice.core.pojo.Vehicle;
+import com.dorm.vehicle.vehicleservice.query.rest.VehicleRestModel;
 import com.dorm.vehicle.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class VehicleController {
     }
 
     @RequestMapping(value ="/vehicle", method = RequestMethod.GET)
-    public List<Vehicle> getVehicle(){
+    public List<VehicleRestModel> getVehicle(){
         return vehicleService.getVehicle();
     }
 
@@ -52,9 +53,9 @@ public class VehicleController {
     }
 
     @RequestMapping(value ="/getVehicleNum/{room_number}", method = RequestMethod.GET)
-    public List<Vehicle> getVehicleNum(@PathVariable("room_number") String room_number){
+    public List<VehicleRestModel> getVehicleNum(@PathVariable("room_number") String room_number){
         try {
-            List<Vehicle> vehicle = vehicleService.getRoomByNumber(room_number);
+            List<VehicleRestModel> vehicle = vehicleService.getRoomByNumber(room_number);
             return vehicle;
         }catch (Exception e){
             return null;

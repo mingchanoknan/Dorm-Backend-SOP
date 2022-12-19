@@ -7,7 +7,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Builder
 public class UpdateCommandVehicle {
     @TargetAggregateIdentifier
-    private String _Id;
+    private String _id;
     private String license_plate;
     private String color;
     private String brand;

@@ -3,7 +3,8 @@ package com.dorm.reserve.reserveservice.controller;
 
 
 
-import com.dorm.reserve.reserveservice.pojo.Reserve;
+import com.dorm.reserve.reserveservice.core.rest.ReserveRestModel;
+import com.dorm.reserve.reserveservice.core.pojo.Reserve;
 import com.dorm.reserve.reserveservice.service.ReserveService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +23,14 @@ public class ReserveController {
     }
 
     @RequestMapping(value ="/reserves", method = RequestMethod.GET)
-    public List<Reserve> getInvoices(){
+    public List<ReserveRestModel> getInvoices(){
         return reserveService.getReserve();
     }
 
     @RequestMapping(value ="/addReserve", method = RequestMethod.POST)
-    public boolean addReserve(@RequestBody Reserve reserve){
+    public boolean addReserve(@RequestBody ReserveRestModel reserve){
         try {
+            System.out.println(reserve);
             reserveService.addReserve(reserve);
             return true;
         }catch (Exception e){
@@ -36,8 +38,8 @@ public class ReserveController {
         }
     }
 
-    @RequestMapping(value ="/updateReserve", method = RequestMethod.POST)
-    public boolean updateReserve(@RequestBody Reserve reserve){
+    @RequestMapping(value ="/updateReserve", method = RequestMethod.PUT)
+    public boolean updateReserve(@RequestBody ReserveRestModel reserve){
         try {
             reserveService.updateReserve(reserve);
             return true;
@@ -46,8 +48,8 @@ public class ReserveController {
         }
     }
 
-    @RequestMapping(value ="/deleteReserve", method = RequestMethod.POST)
-    public boolean deleteReserve(@RequestBody Reserve reserve){
+    @RequestMapping(value ="/deleteReserve", method = RequestMethod.DELETE)
+    public boolean deleteReserve(@RequestBody ReserveRestModel reserve){
         try {
             reserveService.deleteReserve(reserve);
             return true;
@@ -57,20 +59,20 @@ public class ReserveController {
     }
 
     @RequestMapping(value ="/getReserveNum/{room_number}", method = RequestMethod.GET)
-    public List<Reserve> getReserveNum(@PathVariable("room_number") String room_number){
+    public List<ReserveRestModel> getReserveNum(@PathVariable("room_number") String room_number){
         try {
-            List<Reserve> reserves = reserveService.getRoomByNumber(room_number);
-            List<Reserve> ans = reserves.stream().filter(c -> c.getStatus().equals("reserve")).toList();
+            List<ReserveRestModel> reserves = reserveService.getRoomByNumber(room_number);
+            List<ReserveRestModel> ans = reserves.stream().filter(c -> c.getStatus().equals("reserve")).toList();
             return ans;
         }catch (Exception e){
             return null;
         }
     }
     @RequestMapping(value ="/getReserveId/{id}", method = RequestMethod.GET)
-    public ResponseEntity<?> getReserveId(@PathVariable("id") String id){
+    public ReserveRestModel getReserveId(@PathVariable("id") String id){
         try {
-            Optional<Reserve> reserve = reserveService.getRoomById(id);
-            return ResponseEntity.ok(reserve);
+            ReserveRestModel reserve =  reserveService.getRoomById(id);
+            return reserve;
         }catch (Exception e){
             return null;
         }
@@ -79,9 +81,9 @@ public class ReserveController {
     @RequestMapping(value ="/updateStatusReserve/{reserveId}/{status}", method = RequestMethod.PUT)
     public boolean updateStatusReserve(@PathVariable("reserveId") String reserveId, @PathVariable("status") String status){
         try {
-            Optional<Reserve> reserve = reserveService.getRoomById(reserveId);
+           ReserveRestModel reserve = reserveService.getRoomById(reserveId);
             if(reserve != null) {
-                reserveService.updateStatus(new Reserve(reserve.get().get_id(), reserve.get().getRoom_number(), reserve.get().getFirst_name(), reserve.get().getLast_name(), reserve.get().getMobile(), reserve.get().getReserve_date(), reserve.get().getLease_date(), status));
+                reserveService.updateReserve(new ReserveRestModel(reserve.get_id(), reserve.getRoom_number(), reserve.getFirst_name(), reserve.getLast_name(), reserve.getMobile(), reserve.getReserve_date(), reserve.getLease_date(), status));
                 return true;
             }
             return true;

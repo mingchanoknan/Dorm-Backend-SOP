@@ -1,7 +1,7 @@
-package com.dorm.news.newsservice.repository;
+package com.dorm.news.newsservice.core.repository;
 
 
-import com.dorm.news.newsservice.pojo.News;
+import com.dorm.news.newsservice.core.pojo.News;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

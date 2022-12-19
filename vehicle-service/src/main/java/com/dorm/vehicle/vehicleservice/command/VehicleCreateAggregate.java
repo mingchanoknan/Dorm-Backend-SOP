@@ -12,7 +12,7 @@ import org.springframework.beans.BeanUtils;
 @Aggregate
 public class VehicleCreateAggregate {
     @AggregateIdentifier
-    private String _Id;
+    private String _id;
     private String license_plate;
     private String color;
     private String brand;
@@ -22,7 +22,7 @@ public class VehicleCreateAggregate {
 
     @CommandHandler
     public VehicleCreateAggregate(CreateCommandVehicle createCommandVehicle) {
-        System.out.println("Command Handler");
+        System.out.println("Command Handler (create vehicle)");
         VehicleCreatedEvent vehicleCreatedEvent = new VehicleCreatedEvent();
         BeanUtils.copyProperties(createCommandVehicle, vehicleCreatedEvent);
         AggregateLifecycle.apply(vehicleCreatedEvent);
@@ -31,8 +31,8 @@ public class VehicleCreateAggregate {
 
     @EventSourcingHandler
     public void on(VehicleCreatedEvent vehicleCreatedEvent) {
-        System.out.println("To Event Store");
-        this._Id = vehicleCreatedEvent.get_Id();
+        System.out.println("To Event Store (create vehicle)");
+        this._id = vehicleCreatedEvent.get_id();
         this.license_plate = vehicleCreatedEvent.getLicense_plate();
         this.brand = vehicleCreatedEvent.getBrand();
         this.color = vehicleCreatedEvent.getColor();

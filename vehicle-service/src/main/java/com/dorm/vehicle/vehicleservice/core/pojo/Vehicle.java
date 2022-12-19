@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Document("Vehicle")
 public class Vehicle implements Serializable {
     @Id
-    private String _Id;
+    private String _id;
     private String license_plate;
     private String color;
     private String brand;
@@ -19,8 +19,8 @@ public class Vehicle implements Serializable {
     public Vehicle() {
     }
 
-    public Vehicle(String _Id, String license_plate, String color, String brand, String room_number) {
-        this._Id = _Id;
+    public Vehicle(String _id, String license_plate, String color, String brand, String room_number) {
+        this._id = _id;
         this.license_plate = license_plate;
         this.color = color;
         this.brand = brand;
