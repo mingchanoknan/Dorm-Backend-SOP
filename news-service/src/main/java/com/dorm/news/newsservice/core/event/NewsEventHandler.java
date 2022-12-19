@@ -28,4 +28,11 @@ public class NewsEventHandler {
         newsRepository.save(news);
         System.out.println("update news in mongo");
     }
+    @EventHandler
+    public void on(NewsDeleteEvent event){
+        News news = new News();
+        BeanUtils.copyProperties(event,news);
+        newsRepository.delete(news);
+        System.out.println("delete news in mongo");
+    }
 }

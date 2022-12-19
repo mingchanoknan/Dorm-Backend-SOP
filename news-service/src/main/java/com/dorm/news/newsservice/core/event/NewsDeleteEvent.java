@@ -1,11 +1,12 @@
-package com.dorm.news.newsservice.command.rest;
+package com.dorm.news.newsservice.core.event;
 
 import lombok.Data;
+import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.util.ArrayList;
-
 @Data
-public class NewsRestModel {
+public class NewsDeleteEvent {
+    private String aggregateId;
     private String _id;
     private String title;
     private String text;
