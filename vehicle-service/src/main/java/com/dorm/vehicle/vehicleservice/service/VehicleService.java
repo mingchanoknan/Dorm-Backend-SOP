@@ -1,13 +1,14 @@
 package com.dorm.vehicle.vehicleservice.service;
 
 import com.dorm.vehicle.vehicleservice.command.CreateCommandVehicle;
+import com.dorm.vehicle.vehicleservice.command.DeleteByIdCommandVehicle;
 import com.dorm.vehicle.vehicleservice.command.DeleteCommandVehicle;
 import com.dorm.vehicle.vehicleservice.command.UpdateCommandVehicle;
 import com.dorm.vehicle.vehicleservice.core.pojo.Vehicle;
 import com.dorm.vehicle.vehicleservice.core.repository.VehicleRepository;
-import com.dorm.vehicle.vehicleservice.query.rest.FindAllVehicleQuery;
-import com.dorm.vehicle.vehicleservice.query.rest.FindVehicleByRoomNumberQuery;
-import com.dorm.vehicle.vehicleservice.query.rest.VehicleRestModel;
+import com.dorm.vehicle.vehicleservice.query.FindAllVehicleQuery;
+import com.dorm.vehicle.vehicleservice.query.FindVehicleByRoomNumberQuery;
+import com.dorm.vehicle.vehicleservice.core.rest.VehicleRestModel;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -16,17 +17,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class VehicleService {
 
-    @Autowired
-    private VehicleRepository vehicleRepository;
-    @Autowired
-    private CommandGateway commandGateway;
-    @Autowired
-    private QueryGateway queryGateway;
 
+    private VehicleRepository vehicleRepository;
+
+    private final CommandGateway commandGateway;
+
+    private final QueryGateway queryGateway;
+    @Autowired
     public VehicleService(VehicleRepository vehicleRepository, CommandGateway commandGateway, QueryGateway queryGateway) {
         this.vehicleRepository = vehicleRepository;
         this.commandGateway = commandGateway;
@@ -34,17 +36,21 @@ public class VehicleService {
     }
 
     public List<VehicleRestModel> getVehicle(){
-        FindAllVehicleQuery findAllVehicleQuery = new FindAllVehicleQuery();
-        List<VehicleRestModel> vehicles = queryGateway.query(findAllVehicleQuery, ResponseTypes.multipleInstancesOf(VehicleRestModel.class)).join();
+        try {
+            FindAllVehicleQuery findAllVehicleQuery = new FindAllVehicleQuery();
+            List<VehicleRestModel> vehicles = queryGateway.query(findAllVehicleQuery, ResponseTypes.multipleInstancesOf(VehicleRestModel.class)).join();
 //        return vehicleRepository.findAll();
-        return vehicles;
+            return vehicles;
+        }catch (Exception e){
+            return null;
+        }
+
     }
-    public boolean addVehicle(Vehicle vehicle){
+    public boolean addVehicle(VehicleRestModel vehicle){
         try {
             System.out.println("Create Service");
-            Object id = new ObjectId();
-            vehicle.set_id(id.toString());
             CreateCommandVehicle command = CreateCommandVehicle.builder()
+                    .aggregateId(UUID.randomUUID().toString())
                     ._id(vehicle.get_id())
                     .license_plate(vehicle.getLicense_plate())
                     .brand(vehicle.getBrand())
@@ -52,7 +58,7 @@ public class VehicleService {
                     .room_number(vehicle.getRoom_number())
                     .build();
 
-            commandGateway.sendAndWait(command);
+            commandGateway.send(command);
 //            vehicleRepository.insert(vehicle);
             return true;
         }catch (Exception e){
@@ -60,10 +66,11 @@ public class VehicleService {
         }
     }
 
-    public boolean updateVehicle(Vehicle vehicle){
+    public boolean updateVehicle(VehicleRestModel vehicle){
         try {
             System.out.println("Update Service");
             UpdateCommandVehicle updateCommandVehicle = UpdateCommandVehicle.builder()
+                    .aggregateId(UUID.randomUUID().toString())
                     ._id(vehicle.get_id())
                     .license_plate(vehicle.getLicense_plate())
                     .brand(vehicle.getBrand())
@@ -78,10 +85,11 @@ public class VehicleService {
         }
     }
 
-    public boolean deleteVehicle(Vehicle vehicle){
+    public boolean deleteVehicle(VehicleRestModel vehicle){
         try {
             System.out.println("Delete Service");
             DeleteCommandVehicle deleteCommandVehicle = DeleteCommandVehicle.builder()
+                    .aggregateId(UUID.randomUUID().toString())
                     ._id(vehicle.get_id())
                     .license_plate(vehicle.getLicense_plate())
                     .brand(vehicle.getBrand())
@@ -110,7 +118,12 @@ public class VehicleService {
 
     public boolean deleteAllVehicle(String id){
         try {
-            vehicleRepository.deleteById(id);
+            System.out.println("Delete Service");
+            DeleteByIdCommandVehicle deleteByIdCommandVehicle = DeleteByIdCommandVehicle.builder()
+                    .aggregateId(UUID.randomUUID().toString())
+                    ._id(id).build();
+            commandGateway.send(deleteByIdCommandVehicle);
+//            vehicleRepository.deleteById(id);
             return true;
         }catch (Exception e){
             return false;

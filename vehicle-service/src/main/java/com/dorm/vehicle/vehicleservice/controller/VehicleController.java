@@ -1,7 +1,7 @@
 package com.dorm.vehicle.vehicleservice.controller;
 
 import com.dorm.vehicle.vehicleservice.core.pojo.Vehicle;
-import com.dorm.vehicle.vehicleservice.query.rest.VehicleRestModel;
+import com.dorm.vehicle.vehicleservice.core.rest.VehicleRestModel;
 import com.dorm.vehicle.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ public class VehicleController {
     }
 
     @RequestMapping(value ="/addVehicle", method = RequestMethod.POST)
-    public boolean addVehicle(@RequestBody Vehicle vehicle){
+    public boolean addVehicle(@RequestBody VehicleRestModel vehicle){
         try {
             vehicleService.addVehicle(vehicle);
             return true;
@@ -33,7 +33,7 @@ public class VehicleController {
     }
 
     @RequestMapping(value ="/updateVehicle", method = RequestMethod.PUT)
-    public boolean updateVehicle(@RequestBody Vehicle vehicle){
+    public boolean updateVehicle(@RequestBody VehicleRestModel vehicle){
         try {
             vehicleService.updateVehicle(vehicle);
             return true;
@@ -43,7 +43,7 @@ public class VehicleController {
     }
 
     @RequestMapping(value ="/deleteVehicle", method = RequestMethod.DELETE)
-    public boolean deleteVehicle(@RequestBody Vehicle vehicle){
+    public boolean deleteVehicle(@RequestBody VehicleRestModel vehicle){
         try {
             vehicleService.deleteVehicle(vehicle);
             return true;

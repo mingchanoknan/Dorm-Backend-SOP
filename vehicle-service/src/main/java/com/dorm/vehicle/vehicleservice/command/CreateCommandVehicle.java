@@ -8,6 +8,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Builder
 public class CreateCommandVehicle {
     @TargetAggregateIdentifier
+    private String aggregateId;
     private String _id;
     private String license_plate;
     private String color;

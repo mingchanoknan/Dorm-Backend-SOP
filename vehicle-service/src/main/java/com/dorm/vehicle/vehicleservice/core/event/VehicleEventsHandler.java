@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class VehicleCreatedEventsHandler {
+public class VehicleEventsHandler {
 
     private final VehicleRepository vehicleRepository;
 
     @Autowired
-    public  VehicleCreatedEventsHandler(VehicleRepository vehicleRepository) {
+    public VehicleEventsHandler(VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository;
     }
 
@@ -31,6 +31,18 @@ public class VehicleCreatedEventsHandler {
         Vehicle vehicle = new Vehicle();
         BeanUtils.copyProperties(vehicleUpdatedEvent, vehicle);
         vehicleRepository.save(vehicle);
+    }
+    @EventHandler
+    public void on(VehicleDeletedEvent vehicleDeletedEvent) {
+        System.out.println("Delete vehicle from Mongo Store");
+        Vehicle vehicle = new Vehicle();
+        BeanUtils.copyProperties(vehicleDeletedEvent, vehicle);
+        vehicleRepository.delete(vehicle);
+    }
+    @EventHandler
+    public void on(VehicleDeleteByIdEvent vehicleDeletedEvent) {
+        System.out.println("Delete vehicle by id from Mongo Store");
+        vehicleRepository.deleteById(vehicleDeletedEvent.get_id());
     }
 
 
