@@ -1,4 +1,4 @@
-package com.dorm.vehicle.vehicleservice.query.rest;
+package com.dorm.vehicle.vehicleservice.query;
 
 import lombok.Data;
 

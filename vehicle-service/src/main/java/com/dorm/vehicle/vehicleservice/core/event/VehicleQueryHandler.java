@@ -2,9 +2,9 @@ package com.dorm.vehicle.vehicleservice.core.event;
 
 import com.dorm.vehicle.vehicleservice.core.pojo.Vehicle;
 import com.dorm.vehicle.vehicleservice.core.repository.VehicleRepository;
-import com.dorm.vehicle.vehicleservice.query.rest.FindAllVehicleQuery;
-import com.dorm.vehicle.vehicleservice.query.rest.FindVehicleByRoomNumberQuery;
-import com.dorm.vehicle.vehicleservice.query.rest.VehicleRestModel;
+import com.dorm.vehicle.vehicleservice.query.FindAllVehicleQuery;
+import com.dorm.vehicle.vehicleservice.query.FindVehicleByRoomNumberQuery;
+import com.dorm.vehicle.vehicleservice.core.rest.VehicleRestModel;
 import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;

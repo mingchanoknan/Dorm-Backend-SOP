@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class VehicleUpdatedEvent {
+    private String aggregateId;
     private String _id;
     private String license_plate;
     private String color;
