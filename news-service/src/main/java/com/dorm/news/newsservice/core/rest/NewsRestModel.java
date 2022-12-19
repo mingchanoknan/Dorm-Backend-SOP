@@ -1,12 +1,11 @@
-package com.dorm.news.newsservice.core.event;
+package com.dorm.news.newsservice.core.rest;
 
 import lombok.Data;
 
 import java.util.ArrayList;
 
 @Data
-public class NewsCreatedEvent {
-    private String aggregateId;
+public class NewsRestModel {
     private String _id;
     private String title;
     private String text;

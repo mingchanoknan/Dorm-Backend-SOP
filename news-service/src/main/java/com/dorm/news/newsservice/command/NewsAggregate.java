@@ -1,6 +1,7 @@
 package com.dorm.news.newsservice.command;
 
 import com.dorm.news.newsservice.core.event.NewsCreatedEvent;
+import com.dorm.news.newsservice.core.event.NewsDeleteEvent;
 import com.dorm.news.newsservice.core.event.NewsUpdateEvent;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -41,11 +42,18 @@ public class NewsAggregate {
         BeanUtils.copyProperties(updateNewsCommand, newsUpdateEvent);
         AggregateLifecycle.apply(newsUpdateEvent);
     }
+    @CommandHandler
+    public NewsAggregate(DeleteNewsCommand deleteNewsCommand) {
+        System.out.println("delete news command handler");
+        NewsDeleteEvent newsDeleteEvent = new NewsDeleteEvent();
+        BeanUtils.copyProperties(deleteNewsCommand, newsDeleteEvent);
+        AggregateLifecycle.apply(newsDeleteEvent);
+    }
 
     @EventSourcingHandler
     public void on(NewsCreatedEvent newsCreatedEvent){
         System.out.println("add news event sourcing handler");
-        this.aggregateId = UUID.randomUUID().toString();
+        this.aggregateId = newsCreatedEvent.getAggregateId();
         this._id = newsCreatedEvent.get_id();
         this.title = newsCreatedEvent.getTitle();
         this.text = newsCreatedEvent.getText();
@@ -57,12 +65,23 @@ public class NewsAggregate {
     @EventSourcingHandler
     public void on(NewsUpdateEvent newsUpdateEvent) {
         System.out.println("update news event sourcing handler");
-        this.aggregateId = UUID.randomUUID().toString();
+        this.aggregateId = newsUpdateEvent.getAggregateId();
         this._id = newsUpdateEvent.get_id();
         this.title = newsUpdateEvent.getTitle();
         this.text = newsUpdateEvent.getText();
         this.created_byId = newsUpdateEvent.getCreated_byId();
         this.created_date = newsUpdateEvent.getCreated_date();
         this.url = newsUpdateEvent.getUrl();
+    }
+    @EventSourcingHandler
+    public void on(NewsDeleteEvent newsDeleteEvent) {
+        System.out.println("delete news event sourcing handler");
+        this.aggregateId = newsDeleteEvent.getAggregateId();
+        this._id = newsDeleteEvent.get_id();
+        this.title = newsDeleteEvent.getTitle();
+        this.text = newsDeleteEvent.getText();
+        this.created_byId = newsDeleteEvent.getCreated_byId();
+        this.created_date = newsDeleteEvent.getCreated_date();
+        this.url = newsDeleteEvent.getUrl();
     }
 }
