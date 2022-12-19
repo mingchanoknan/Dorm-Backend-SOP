@@ -1,6 +1,7 @@
 package com.dorm.vehicle.vehicleservice.controller;
 
-import com.dorm.vehicle.vehicleservice.pojo.Vehicle;
+import com.dorm.vehicle.vehicleservice.core.pojo.Vehicle;
+import com.dorm.vehicle.vehicleservice.core.rest.VehicleRestModel;
 import com.dorm.vehicle.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +18,12 @@ public class VehicleController {
     }
 
     @RequestMapping(value ="/vehicle", method = RequestMethod.GET)
-    public List<Vehicle> getVehicle(){
+    public List<VehicleRestModel> getVehicle(){
         return vehicleService.getVehicle();
     }
 
     @RequestMapping(value ="/addVehicle", method = RequestMethod.POST)
-    public boolean addVehicle(@RequestBody Vehicle vehicle){
+    public boolean addVehicle(@RequestBody VehicleRestModel vehicle){
         try {
             vehicleService.addVehicle(vehicle);
             return true;
@@ -31,8 +32,8 @@ public class VehicleController {
         }
     }
 
-    @RequestMapping(value ="/updateVehicle", method = RequestMethod.POST)
-    public boolean updateVehicle(@RequestBody Vehicle vehicle){
+    @RequestMapping(value ="/updateVehicle", method = RequestMethod.PUT)
+    public boolean updateVehicle(@RequestBody VehicleRestModel vehicle){
         try {
             vehicleService.updateVehicle(vehicle);
             return true;
@@ -41,8 +42,8 @@ public class VehicleController {
         }
     }
 
-    @RequestMapping(value ="/deleteVehicle", method = RequestMethod.POST)
-    public boolean deleteVehicle(@RequestBody Vehicle vehicle){
+    @RequestMapping(value ="/deleteVehicle", method = RequestMethod.DELETE)
+    public boolean deleteVehicle(@RequestBody VehicleRestModel vehicle){
         try {
             vehicleService.deleteVehicle(vehicle);
             return true;
@@ -52,9 +53,9 @@ public class VehicleController {
     }
 
     @RequestMapping(value ="/getVehicleNum/{room_number}", method = RequestMethod.GET)
-    public List<Vehicle> getVehicleNum(@PathVariable("room_number") String room_number){
+    public List<VehicleRestModel> getVehicleNum(@PathVariable("room_number") String room_number){
         try {
-            List<Vehicle> vehicle = vehicleService.getRoomByNumber(room_number);
+            List<VehicleRestModel> vehicle = vehicleService.getRoomByNumber(room_number);
             return vehicle;
         }catch (Exception e){
             return null;

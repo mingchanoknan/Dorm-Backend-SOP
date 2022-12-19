@@ -1,7 +1,8 @@
 package com.dorm.news.newsservice.controller;
 
 
-import com.dorm.news.newsservice.pojo.News;
+import com.dorm.news.newsservice.core.pojo.News;
+import com.dorm.news.newsservice.core.rest.NewsRestModel;
 import com.dorm.news.newsservice.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,12 +22,12 @@ public class NewsController {
     }
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)
-    public List<News> getNews(){
+    public List<NewsRestModel> getNews(){
         return newsService.getNews();
     }
 
     @RequestMapping(value ="/addNews", method = RequestMethod.POST)
-    public String addNews(@RequestBody News news){
+    public String addNews(@RequestBody NewsRestModel news){
         try {
             return newsService.addNews(news);
         }catch (Exception e){
@@ -34,8 +35,8 @@ public class NewsController {
         }
     }
 
-    @RequestMapping(value = "/updateNews", method = RequestMethod.POST)
-    public boolean updateNews(@RequestBody News news){
+    @RequestMapping(value = "/updateNews", method = RequestMethod.PUT)
+    public boolean updateNews(@RequestBody NewsRestModel news){
         try{
             newsService.updateNews(news);
             return true;
@@ -44,8 +45,8 @@ public class NewsController {
         }
     }
 
-    @RequestMapping(value = "/deleteNews", method = RequestMethod.POST)
-    public boolean deleteNews(@RequestBody News news){
+    @RequestMapping(value = "/deleteNews", method = RequestMethod.DELETE)
+    public boolean deleteNews(@RequestBody NewsRestModel news){
         try{
             newsService.deleteNews(news);
             return true;
