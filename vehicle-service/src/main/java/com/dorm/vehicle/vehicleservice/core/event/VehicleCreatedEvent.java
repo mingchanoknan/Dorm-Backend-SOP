@@ -5,7 +5,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 @Data
 public class VehicleCreatedEvent {
-    private String _Id;
+    private String _id;
     private String license_plate;
     private String color;
     private String brand;

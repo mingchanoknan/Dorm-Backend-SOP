@@ -1,17 +1,9 @@
-package com.dorm.reserve.reserveservice.pojo;
-
-
+package com.dorm.reserve.reserveservice.core.rest;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.io.Serializable;
 
 @Data
-@Document("Reserve")
-public class Reserve implements Serializable {
-    @Id
+public class ReserveRestModel {
     private String _id;
     private String room_number;
     private String first_name;
@@ -21,10 +13,10 @@ public class Reserve implements Serializable {
     private String lease_date;
     private String status;
 
-    public Reserve() {
+    public ReserveRestModel() {
     }
 
-    public Reserve(String _id, String room_number, String first_name, String last_name, String mobile, String reserve_date, String lease_date, String status) {
+    public ReserveRestModel(String _id, String room_number, String first_name, String last_name, String mobile, String reserve_date, String lease_date, String status) {
         this._id = _id;
         this.room_number = room_number;
         this.first_name = first_name;
@@ -35,4 +27,3 @@ public class Reserve implements Serializable {
         this.status = status;
     }
 }
-

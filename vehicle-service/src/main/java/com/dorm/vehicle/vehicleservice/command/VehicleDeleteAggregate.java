@@ -12,19 +12,17 @@ import org.springframework.beans.BeanUtils;
 @Aggregate
 public class VehicleDeleteAggregate {
     @AggregateIdentifier
-    private String _Id;
+    private String _id;
     private String license_plate;
     private String color;
     private String brand;
     private String room_number;
 
-    public VehicleDeleteAggregate() {
-
-    }
+    public VehicleDeleteAggregate() {}
 
     @CommandHandler
     public VehicleDeleteAggregate(DeleteCommandVehicle deleteCommandVehicle){
-        System.out.println("Command Handler");
+        System.out.println("Delete Command Handler");
         VehicleDeletedEvent vehicleDeletedEvent = new VehicleDeletedEvent();
         BeanUtils.copyProperties(deleteCommandVehicle, vehicleDeletedEvent);
         AggregateLifecycle.apply(vehicleDeletedEvent);
@@ -32,8 +30,8 @@ public class VehicleDeleteAggregate {
 
     @EventSourcingHandler
     public void on(VehicleDeletedEvent vehicleDeletedEvent) {
-        System.out.println("To event store");
-        this._Id = vehicleDeletedEvent.get_Id();
+        System.out.println("delete, To event store");
+        this._id = vehicleDeletedEvent.get_id();
         this.license_plate = vehicleDeletedEvent.getLicense_plate();
         this.brand = vehicleDeletedEvent.getBrand();
         this.color = vehicleDeletedEvent.getColor();

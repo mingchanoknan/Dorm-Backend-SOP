@@ -1,7 +1,7 @@
 package com.dorm.news.newsservice.controller;
 
 
-import com.dorm.news.newsservice.pojo.News;
+import com.dorm.news.newsservice.core.pojo.News;
 import com.dorm.news.newsservice.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -8,28 +8,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class VehicleEventsHandler {
+public class VehicleCreatedEventsHandler {
 
-    private VehicleRepository vehicleRepository;
+    private final VehicleRepository vehicleRepository;
 
     @Autowired
-    public  VehicleEventsHandler(VehicleRepository vehicleRepository) {
+    public  VehicleCreatedEventsHandler(VehicleRepository vehicleRepository) {
         this.vehicleRepository = vehicleRepository;
     }
 
     @EventHandler
     public void on(VehicleCreatedEvent vehicleCreatedEvent) {
-        System.out.println("To Mongo Store");
+        System.out.println("To Mongo Store (create vehicle)");
         Vehicle vehicle = new Vehicle();
         BeanUtils.copyProperties(vehicleCreatedEvent, vehicle);
-        vehicleRepository.save(vehicle);
+        vehicleRepository.insert(vehicle);
     }
 
     @EventHandler
-    public void on (VehicleUpdatedEvent vehicleUpdatedEvent) {
-        System.out.println("To Mongo Store");
+    public void on(VehicleUpdatedEvent vehicleUpdatedEvent){
+        System.out.println("To Mongo Store (update vehicle)");
         Vehicle vehicle = new Vehicle();
         BeanUtils.copyProperties(vehicleUpdatedEvent, vehicle);
         vehicleRepository.save(vehicle);
     }
+
+
 }
