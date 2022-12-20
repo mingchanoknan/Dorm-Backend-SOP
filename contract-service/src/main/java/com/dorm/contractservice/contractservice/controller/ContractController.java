@@ -56,7 +56,7 @@ public class ContractController {
         }
     }
 
-    @RequestMapping(value ="/deleteContract", method = RequestMethod.POST)
+    @RequestMapping(value ="/deleteContract", method = RequestMethod.DELETE)
     public boolean deleteRent(@RequestBody Contract contract){
         try {
         rabbitTemplate.convertSendAndReceive("ContractExchange","delContract", contract);
@@ -73,6 +73,8 @@ public class ContractController {
         try {
           Contract contract = (Contract) rabbitTemplate.convertSendAndReceive("ContractExchange","getByNum", room_number);
             System.out.println("getByNum");
+            contract.setStatus(status);
+//            System.out.println(contract);
           //  Contract contract = contractService.getRoomByNumber(room_number);
             if(contract != null) {
                 rabbitTemplate.convertSendAndReceive("ContractExchange","updateStatusContract", contract);
