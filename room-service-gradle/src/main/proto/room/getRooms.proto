@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package room;
+
+option java_package = "com.proto.room";
+option java_multiple_files = true;
+
+message roomData{
+  string _id = 1;
+  string suggestion = 2;
+ string information = 3;
+ repeated string convenience = 4;
+  int32 price = 5;
+  string bgColor = 6;
+  string iconColor = 7;
+  string typeName = 8;
+  repeated string image = 9;
+
+}
+message roomGetAllRequest {
+}
+message roomGetAllResponse {
+  repeated roomData result = 1;
+}
+
+
+service roomGetAllService {
+  // Unary
+  rpc GetAllRoom(roomGetAllRequest) returns (roomGetAllResponse){};
+}
