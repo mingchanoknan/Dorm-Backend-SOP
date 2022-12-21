@@ -20,6 +20,7 @@ public class MeterServiceImpl  extends MeterServiceGrpc.MeterServiceImplBase {
 
     @Autowired
     public MeterServiceImpl(MeterService meterService) {
+        System.out.println("Pass");
         this.meterService = meterService;
     }
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MeterController {
     @GetMapping("/test")
-    public String getTest(@RequestParam String _Id, @RequestParam String room_number, @RequestParam String utilities_type, @RequestParam String monthAndYear, @RequestParam double consumption, @RequestParam double sum, @RequestParam double used_unit) {
+    public String getTest(@RequestParam String room_number, @RequestParam String utilities_type, @RequestParam String monthAndYear, @RequestParam double consumption, @RequestParam double sum, @RequestParam double used_unit) {
         System.out.println("Hello gRPC Client");
         ManagedChannel channel = ManagedChannelBuilder
                 .forAddress("localhost", 50058)
@@ -28,7 +28,6 @@ public class MeterController {
         meterClient = MeterServiceGrpc.newBlockingStub(channel);
         // created a protocol buffer greeting message
         Metering metering = Metering.newBuilder()
-                .setId(_Id)
                 .setRoomNumber(room_number)
                 .setUtilitiesType(utilities_type)
                 .setMonthAndYear(monthAndYear)
