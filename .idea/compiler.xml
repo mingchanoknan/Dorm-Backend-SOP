@@ -14,12 +14,12 @@
         <module name="news-service" />
         <module name="payment-service" />
         <module name="vehicle-service" />
-        <module name="reserve-service" />
         <module name="invoice-service" />
+        <module name="reserve-service" />
         <module name="api-gateway" />
-        <module name="room-service" />
-        <module name="parcel-service" />
         <module name="report-service" />
+        <module name="parcel-service" />
+        <module name="room-service" />
         <module name="meter-service" />
         <module name="rent-service" />
       </profile>

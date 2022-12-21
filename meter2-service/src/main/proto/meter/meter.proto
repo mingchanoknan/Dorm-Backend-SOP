@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package meter;
+
+option java_package = "com.proto.meter";
+option java_multiple_files = true;
+
+message Metering{
+  string _Id = 1;
+  string room_number = 2;
+  string utilities_type = 3;
+  string monthAndYear = 4;
+  double consumption = 5;
+  double sum = 6;
+  int32 used_unit = 7;
+}
+message MeterRequest {
+  Metering metering = 1;
+}
+message MeterResponse {
+  string result = 1;
+}
+message MeterRequestForAll {
+
+}
+message MeterResponseForAll {
+  repeated Metering metering = 1;
+}
+
+message GetByTypeRequest {
+  string type = 1;
+}
+
+message GetByTypeResponse {
+  repeated Metering metering = 1;
+}
+
+message GetByMonthRequest {
+  string monthAndYear = 1;
+  string type = 2;
+}
+
+message GetByMonthResponse {
+  repeated Metering metering = 1;
+}
+
+message AddMeterRequest {
+  Metering metering = 1;
+}
+
+message AddMeterResponse {
+  string result = 1;
+}
+
+message GetMeterOfInvoiceRequest {
+  string roomNumber = 1;
+  string type = 2;
+  string monthYear = 3;
+}
+
+message GetMeterOfInvoiceResponse {
+  Metering metering = 1;
+}
+
+message CountPayMeterRequest {
+  string monthYear = 1;
+  string type = 2;
+}
+
+message CountPayMeterResponse {
+  double num = 1;
+}
+
+service MeterService {
+  // Unary
+  rpc Meter(MeterRequest) returns (MeterResponse){};
+  rpc MeterForAll(MeterRequestForAll) returns (MeterResponseForAll) {};
+  rpc GetByType(GetByTypeRequest) returns (GetByTypeResponse) {};
+  rpc GetByMonth(GetByMonthRequest) returns (GetByMonthResponse) {};
+  rpc AddMeter(AddMeterRequest) returns (AddMeterResponse) {};
+  rpc GetMeterOfInvoice(GetMeterOfInvoiceRequest) returns (GetMeterOfInvoiceResponse) {};
+  rpc CountPayMeter(CountPayMeterRequest) returns (CountPayMeterResponse) {};
+}
+//service MeterServiceForAll {
+//  // Unary
+//  rpc MeterForAll(MeterRequestForAll) returns (MeterResponseForAll){};
+//}
