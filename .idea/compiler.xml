@@ -3,56 +3,21 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Maven default annotation processors profile" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <module name="dicovery-server" />
-        <module name="file-service" />
-        <module name="news-service" />
-        <module name="payment-service" />
-        <module name="vehicle-service" />
-        <module name="invoice-service" />
-        <module name="reserve-service" />
-        <module name="api-gateway" />
-        <module name="report-service" />
-        <module name="parcel-service" />
-        <module name="room-service" />
-        <module name="meter-service" />
-        <module name="rent-service" />
-      </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
         </processorPath>
-        <module name="payment2.main" />
-      </profile>
-    </annotationProcessing>
-        <module name="room-service-gradle.main" />
+        <module name="com.example.meter2-service.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="room-service" target="17" />
+      <module name="room-service-gradle" target="17" />
+      <module name="room-service-gradle.main" target="17" />
+      <module name="room-service-gradle.test" target="17" />
+      <module name="roomService" target="17" />
+      <module name="roomService.main" target="17" />
+      <module name="roomService.test" target="17" />
     </bytecodeTargetLevel>
-  </component>
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="api-gateway" options="-parameters" />
-      <module name="contract-service" options="-parameters" />
-      <module name="dicovery-server" options="-parameters" />
-      <module name="file-service" options="-parameters" />
-      <module name="invoice-service" options="-parameters" />
-      <module name="meter-service" options="-parameters" />
-      <module name="news-service" options="-parameters" />
-      <module name="parcel-service" options="-parameters" />
-      <module name="payment-service" options="-parameters" />
-      <module name="rent-service" options="-parameters" />
-      <module name="report-service" options="-parameters" />
-      <module name="reserve-service" options="-parameters" />
-      <module name="room-service" options="-parameters" />
-      <module name="user-service" options="-parameters" />
-      <module name="vehicle-service" options="-parameters" />
-    </option>
   </component>
 </project>

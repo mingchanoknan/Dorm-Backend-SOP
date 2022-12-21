@@ -65,7 +65,8 @@ public class MeterServiceImpl  extends MeterServiceGrpc.MeterServiceImplBase {
     }
 
     @Override
-    public void addMeter(AddMeterRequest request, StreamObserver<AddMeterResponse> responseObserver) {
+    public void addMeter(AddMeterRequest request,
+                         StreamObserver<AddMeterResponse> responseObserver) {
         String result = "";
         Metering metering = request.getMetering();
         Meter meter = new Meter();
