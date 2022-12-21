@@ -13,6 +13,7 @@ import java.io.IOException;
 @SpringBootApplication
 public class Meter2ServiceApplication {
 
+
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(Meter2ServiceApplication.class, args); //
 		try {
@@ -24,5 +25,6 @@ public class Meter2ServiceApplication {
 			throw new RuntimeException(e);
 		}
 	}
+
 
 }

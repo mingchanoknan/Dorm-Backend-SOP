@@ -1,20 +1,19 @@
 package com.example.meter2service.service;
 
-
-
 import com.example.meter2service.pojo.Meter;
 import com.example.meter2service.repository.MeterRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class MeterService {
     @Autowired
     private MeterRepository meterRepository;
+
+    public MeterService() {
+    }
 
     public MeterService(MeterRepository meterRepository) {
         this.meterRepository = meterRepository;

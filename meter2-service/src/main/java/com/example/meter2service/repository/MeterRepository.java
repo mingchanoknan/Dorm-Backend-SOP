@@ -1,8 +1,5 @@
 package com.example.meter2service.repository;
 
-
-
-
 import com.example.meter2service.pojo.Meter;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -20,6 +17,6 @@ public interface MeterRepository extends MongoRepository<Meter, String> {
 
     @Query(value = "{monthAndYear: '?0', utilities_type: '?1'}")
     public List<Meter> findByMonthAndYear(String monthAndYear, String utilities_type);
-}
 
+}
 

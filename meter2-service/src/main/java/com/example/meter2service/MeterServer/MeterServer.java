@@ -3,21 +3,17 @@ package com.example.meter2service.MeterServer;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-@Service
+
 public class MeterServer {
 
-    @Autowired
-    private static MeterServiceImpl meterService;
 
     public static void main(String[] args) {
         System.out.println("Hello gRPC");
-        Server server = ServerBuilder.forPort(50058)
-                .addService(meterService)
+        Server server = ServerBuilder.forPort(50059)
+                .addService(new MeterServiceImpl())
                 .build();
         try {
             server.start();
@@ -43,5 +39,3 @@ public class MeterServer {
 
     }
 }
-
-
