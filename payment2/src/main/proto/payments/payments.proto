@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package payments;
+
+option java_package = "com.proto.payments";
+option java_multiple_files = true;
+
+message Paymenting {
+  string _Id = 1;
+  string payment_date = 2;
+  string payment_time = 3;
+  string payment_note = 4;
+  string idInvoice = 5;
+  string url = 6;
+  double amount = 7;
+  string room_number = 8;
+  string payment_status = 9;
+}
+
+message AddPaymentRequest{
+  Paymenting payment = 1;
+
+}
+
+message UpdatePaymentRequest{
+  Paymenting payment = 1;
+}
+
+message DeletePaymentRequest{
+  Paymenting payment = 1;
+}
+
+
+message GetPaymentByIdRequest{
+  string id = 1;
+}
+
+
+message AddPaymentResponse{
+  string Result = 1;
+}
+
+message UpdatePaymentResponse{
+  string Result = 1;
+}
+
+message DeletePaymentResponse{
+  string Result = 1;
+}
+
+message GetPaymentByIdResponse{
+  Paymenting payment = 1;
+}
+
+service PaymentService{
+  rpc addPayment(AddPaymentRequest) returns (stream AddPaymentResponse){};
+  rpc updatePayment(UpdatePaymentRequest) returns(stream UpdatePaymentResponse){};
+  rpc deletePayment(DeletePaymentRequest) returns(stream DeletePaymentResponse){};
+  rpc getPaymentById(GetPaymentByIdRequest) returns(stream GetPaymentByIdResponse){};
+}
+

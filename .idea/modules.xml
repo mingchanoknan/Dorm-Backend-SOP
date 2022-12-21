@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/api-gateway/api-gateway.iml" filepath="$PROJECT_DIR$/api-gateway/api-gateway.iml" />
-      <module fileurl="file://$PROJECT_DIR$/contract-service/contract-service.iml" filepath="$PROJECT_DIR$/contract-service/contract-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/dicovery-server/dicovery-server.iml" filepath="$PROJECT_DIR$/dicovery-server/dicovery-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/dormbackend.iml" filepath="$PROJECT_DIR$/.idea/dormbackend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/file-service/file-service.iml" filepath="$PROJECT_DIR$/file-service/file-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/invoice-service/invoice-service.iml" filepath="$PROJECT_DIR$/invoice-service/invoice-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/meter-service/meter-service.iml" filepath="$PROJECT_DIR$/meter-service/meter-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/news-service/news-service.iml" filepath="$PROJECT_DIR$/news-service/news-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/parcel-service/parcel-service.iml" filepath="$PROJECT_DIR$/parcel-service/parcel-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/payment-service/payment-service.iml" filepath="$PROJECT_DIR$/payment-service/payment-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rent-service/rent-service.iml" filepath="$PROJECT_DIR$/rent-service/rent-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/report-service/report-service.iml" filepath="$PROJECT_DIR$/report-service/report-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/reserve-service/reserve-service.iml" filepath="$PROJECT_DIR$/reserve-service/reserve-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/room-service/room-service.iml" filepath="$PROJECT_DIR$/room-service/room-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/vehicle-service/vehicle-service.iml" filepath="$PROJECT_DIR$/vehicle-service/vehicle-service.iml" />
     </modules>
   </component>
 </project>
