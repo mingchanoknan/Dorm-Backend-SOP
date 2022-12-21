@@ -8,8 +8,6 @@ import java.io.IOException;
 
 
 public class MeterServer {
-
-
     public static void main(String[] args) {
         System.out.println("Hello gRPC");
         Server server = ServerBuilder.forPort(50059)
