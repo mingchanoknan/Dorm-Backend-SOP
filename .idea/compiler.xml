@@ -7,8 +7,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="contract-service" />
-        <module name="user-service" />
         <module name="dicovery-server" />
         <module name="file-service" />
         <module name="news-service" />
@@ -31,6 +29,12 @@
         <module name="payment2.main" />
       </profile>
     </annotationProcessing>
+        <module name="room-service-gradle.main" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="room-service" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

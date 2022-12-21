@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/dormbackend.iml" filepath="$PROJECT_DIR$/.idea/dormbackend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/meter2-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/meter2-service.main.iml" />
     </modules>
   </component>
 </project>
