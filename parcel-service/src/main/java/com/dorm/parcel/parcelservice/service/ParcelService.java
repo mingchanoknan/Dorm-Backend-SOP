@@ -2,6 +2,7 @@ package com.dorm.parcel.parcelservice.service;
 
 import com.dorm.parcel.parcelservice.pojo.Parcel;
 import com.dorm.parcel.parcelservice.repository.ParcelRepository;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +18,12 @@ public class ParcelService {
         this.parcelRepository = parcelRepository;
     }
 
+    @RabbitListener(queues = "GetAllParcelQueue")
     public List<Parcel> getParcel(){
         return parcelRepository.findAll();
     }
+
+    @RabbitListener(queues = "AddParcelQueue")
     public boolean addParcel(Parcel parcel){
         try {
             parcelRepository.insert(parcel);
@@ -29,6 +33,7 @@ public class ParcelService {
         }
     }
 
+    @RabbitListener(queues = "UpdateParcelQueue")
     public boolean updateParcel(Parcel parcel){
         try {
             parcelRepository.save(parcel);
@@ -38,6 +43,7 @@ public class ParcelService {
         }
     }
 
+    @RabbitListener(queues = "DeleteParcelQueue")
     public boolean deleteParcel(Parcel parcel){
         try {
             parcelRepository.delete(parcel);
@@ -47,6 +53,7 @@ public class ParcelService {
         }
     }
 
+    @RabbitListener(queues = "GetRoomByNumQueue")
     public List<Parcel> getRoomByNumber(String room_number){
         try {
             return parcelRepository.findByRoomNumber(room_number);
@@ -55,6 +62,7 @@ public class ParcelService {
         }
     }
 
+    @RabbitListener(queues = "UpdateStatusParcelQueue")
     public boolean updateStatus(Parcel parcel){
         try {
             parcelRepository.save(parcel);
@@ -64,6 +72,7 @@ public class ParcelService {
         }
     }
 
+    @RabbitListener(queues = "GetParcelByIdQueue")
     public Optional<Parcel> getParcelById(String id){
         try {
             Optional<Parcel> parcel = parcelRepository.findById(id);
@@ -73,6 +82,7 @@ public class ParcelService {
         }
     }
 
+    @RabbitListener(queues = "GetParcelByStatusQueue")
     public List<Parcel> getParcelByStatus(String status){
         try {
             List<Parcel> parcel = parcelRepository.findByStatus(status);
@@ -81,6 +91,7 @@ public class ParcelService {
             return null;
         }
     }
+    @RabbitListener(queues = "CountParcelQueue")
     public int countParcel(String status){
         return parcelRepository.countParcel(status);
     }
