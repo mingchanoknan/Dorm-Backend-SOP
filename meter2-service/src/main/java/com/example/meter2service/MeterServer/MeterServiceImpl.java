@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 @GrpcService
-public class MeterServiceImpl  extends MeterServiceGrpc.MeterServiceImplBase {
+public class MeterServiceImpl extends MeterServiceGrpc.MeterServiceImplBase {
 
    private MeterService meterService;
 

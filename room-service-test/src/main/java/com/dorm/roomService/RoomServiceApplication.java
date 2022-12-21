@@ -1,21 +1,19 @@
-package com.dorm.roomservicegradle;
+package com.dorm.roomService;
 
+import com.dorm.roomService.service.RoomServiceImpl;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
 
-@EnableDiscoveryClient
 @SpringBootApplication
-public class RoomServiceGradleApplication {
+public class RoomServiceApplication {
 
 	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication.run(RoomServiceGradleApplication.class, args);
+		ConfigurableApplicationContext context = SpringApplication.run(RoomServiceApplication.class, args);
 		try {
 			Server server = context.getBean(ServerBuilder.class).build().start();
 			server.awaitTermination();
@@ -24,6 +22,7 @@ public class RoomServiceGradleApplication {
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
+
 	}
 
 }
