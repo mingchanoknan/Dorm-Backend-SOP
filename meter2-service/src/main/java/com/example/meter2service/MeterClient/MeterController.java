@@ -100,6 +100,7 @@ public class MeterController {
 
         System.out.println("Shutting down channel");
         channel.shutdown();
+
         return meterResponse.getResult();
     }
 

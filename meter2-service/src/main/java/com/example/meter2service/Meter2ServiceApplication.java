@@ -13,16 +13,18 @@ import java.io.IOException;
 @SpringBootApplication
 public class Meter2ServiceApplication {
 
-    public static void main(String[] args) {
-        ConfigurableApplicationContext context = SpringApplication.run(Meter2ServiceApplication.class, args); //
-        try {
-            Server server = context.getBean(ServerBuilder.class).build().start(); //
-            server.awaitTermination();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
+	public static void main(String[] args) {
+		ConfigurableApplicationContext context = SpringApplication.run(Meter2ServiceApplication.class, args); //
+		try {
+			Server server = context.getBean(ServerBuilder.class).build().start(); //
+			server.awaitTermination();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		} catch (InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 
 }

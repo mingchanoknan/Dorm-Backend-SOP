@@ -24,6 +24,7 @@ message MeterRequestForAll {
 
 }
 message MeterResponseForAll {
+
   repeated Metering metering = 1;
 }
 
@@ -80,6 +81,7 @@ service MeterService {
   rpc AddMeter(AddMeterRequest) returns (AddMeterResponse) {};
   rpc GetMeterOfInvoice(GetMeterOfInvoiceRequest) returns (GetMeterOfInvoiceResponse) {};
   rpc CountPayMeter(CountPayMeterRequest) returns (CountPayMeterResponse) {};
+
 }
 //service MeterServiceForAll {
 //  // Unary

@@ -18,7 +18,6 @@ public class GrpcServerConfiguration {
     public ServerBuilder<?> ServerBuilder(MongoClient mongoClient) {
         System.out.println("Server Pass");
         ServerBuilder<?> serverBuilder = ServerBuilder.forPort(50059);
-
         serverBuilder.addService(meterService);
         return  serverBuilder;
     }

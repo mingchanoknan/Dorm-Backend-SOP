@@ -6,7 +6,6 @@ import com.proto.meter.*;
 import io.grpc.stub.StreamObserver;
 import net.devh.boot.grpc.server.service.GrpcService;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 @GrpcService
@@ -46,6 +45,7 @@ public class MeterServiceImpl  extends MeterServiceGrpc.MeterServiceImplBase {
         // Block 4: complete the RPC call
         responseObserver.onCompleted();
     }
+
 
 
     @Override
@@ -140,3 +140,4 @@ public class MeterServiceImpl  extends MeterServiceGrpc.MeterServiceImplBase {
         responseObserver.onCompleted();
     }
 }
+
