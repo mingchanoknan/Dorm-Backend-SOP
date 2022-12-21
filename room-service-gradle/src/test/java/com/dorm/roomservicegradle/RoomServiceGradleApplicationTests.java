@@ -1,0 +1,13 @@
+package com.dorm.roomservicegradle;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class RoomServiceGradleApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
