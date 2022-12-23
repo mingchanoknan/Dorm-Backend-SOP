@@ -101,22 +101,31 @@ public class MeterServiceImpl  extends MeterServiceGrpc.MeterServiceImplBase {
 
     @Override
     public void getMeterOfInvoice(GetMeterOfInvoiceRequest request, StreamObserver<GetMeterOfInvoiceResponse> responseObserver) {
+        Metering metering = Metering.newBuilder().build();
+        GetMeterOfInvoiceResponse response = GetMeterOfInvoiceResponse.newBuilder().build();
         Meter result = meterService.getMeterOfInvoice(request.getRoomNumber(), request.getType(), request.getMonthYear());
 
-        System.out.println("result : " + result);
-        Metering metering = Metering.newBuilder()
-                .setId(result.get_Id())
-                .setRoomNumber(result.getRoom_number())
-                .setUtilitiesType(result.getUtilities_type())
-                .setMonthAndYear(result.getMonthAndYear())
-                .setConsumption(result.getConsumption())
-                .setSum(result.getSum())
-                .setUsedUnit(result.getUsed_unit())
-                .build();
+        if(result == null){
+            response = GetMeterOfInvoiceResponse.newBuilder()
+                    .setMetering(metering)
+                    .build();
+        }
+        else {
+            metering = Metering.newBuilder()
+                    .setId(result.get_Id())
+                    .setRoomNumber(result.getRoom_number())
+                    .setUtilitiesType(result.getUtilities_type())
+                    .setMonthAndYear(result.getMonthAndYear())
+                    .setConsumption(result.getConsumption())
+                    .setSum(result.getSum())
+                    .setUsedUnit(result.getUsed_unit())
+                    .build();
+            response = GetMeterOfInvoiceResponse.newBuilder()
+                    .setMetering(metering)
+                    .build();
+        }
 
-        GetMeterOfInvoiceResponse response = GetMeterOfInvoiceResponse.newBuilder()
-                .setMetering(metering)
-                .build();
+
         // Block 3: send the response
         responseObserver.onNext(response);
 

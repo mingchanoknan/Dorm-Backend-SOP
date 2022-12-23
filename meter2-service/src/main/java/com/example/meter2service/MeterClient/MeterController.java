@@ -55,7 +55,6 @@ public class MeterController {
         System.out.println("ans :" + meterResponse.getResult());
 
         System.out.println("Shutting down channel");
-        channel.shutdown();
         return  meterResponse.getResult();
     }
 
@@ -99,7 +98,6 @@ public class MeterController {
         System.out.println(meterResponse.getResult());
 
         System.out.println("Shutting down channel");
-        channel.shutdown();
 
         return meterResponse.getResult();
     }
@@ -164,8 +162,7 @@ public class MeterController {
         System.out.println("ans : "+ meterResponse.getMetering());
 
         System.out.println("Shutting down channel");
-        channel.shutdown();
-        return  meter;
+        return meter;
     }
 
     @GetMapping("/countPayMeter/{monthandyear}/{type}")
@@ -196,7 +193,6 @@ public class MeterController {
         System.out.println(meterResponse.getNum());
 
         System.out.println("Shutting down channel");
-        channel.shutdown();
         return  meterResponse.getNum();
 
     }

@@ -15,7 +15,7 @@ public class GrpcServerConfiguration {
     @Bean // ลอกมาเลย
     public ServerBuilder<?> ServerBuilder(MongoClient mongoClient) {
         System.out.println("Server Pass");
-        ServerBuilder<?> serverBuilder = ServerBuilder.forPort(50058);
+        ServerBuilder<?> serverBuilder = ServerBuilder.forPort(50061);
 
         serverBuilder.addService(roomService);
         return  serverBuilder;

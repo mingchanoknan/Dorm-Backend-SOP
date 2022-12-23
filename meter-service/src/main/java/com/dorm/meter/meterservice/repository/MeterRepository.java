@@ -1,7 +1,6 @@
 package com.dorm.meter.meterservice.repository;
 
 
-import com.dorm.meter.meterservice.pojo.Meter;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

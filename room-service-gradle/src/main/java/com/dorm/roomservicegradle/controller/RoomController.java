@@ -23,7 +23,7 @@ public class RoomController {
     @Autowired
     public RoomController(RoomService roomService) {
         this.roomService = roomService;
-        this.channel = ManagedChannelBuilder.forAddress("localhost", 50058).usePlaintext().build();
+        this.channel = ManagedChannelBuilder.forAddress("localhost", 50061).usePlaintext().build();
     }
 
     @GetMapping("/getall")
