@@ -1,6 +1,7 @@
 package com.dorm.news.newsservice.core.event;
 
 import com.dorm.news.newsservice.core.pojo.News;
+
 import com.dorm.news.newsservice.core.repository.NewsRepository;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.beans.BeanUtils;

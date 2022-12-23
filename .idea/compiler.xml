@@ -7,7 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="dicovery-server" />
+        <module name="contract-service" />
+        <module name="user-service" />
         <module name="file-service" />
         <module name="news-service" />
         <module name="payment-service" />
@@ -15,9 +16,8 @@
         <module name="invoice-service" />
         <module name="reserve-service" />
         <module name="api-gateway" />
-        <module name="report-service" />
         <module name="parcel-service" />
-        <module name="room-service" />
+        <module name="report-service" />
         <module name="meter-service" />
         <module name="rent-service" />
       </profile>
@@ -26,14 +26,13 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
         </processorPath>
-        <module name="payment2.main" />
-      </profile>
-    </annotationProcessing>
         <module name="room-service-gradle.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="room-service" target="17" />
+      <module name="roomService" target="17" />
+      <module name="roomService.main" target="17" />
+      <module name="roomService.test" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -50,7 +49,6 @@
       <module name="rent-service" options="-parameters" />
       <module name="report-service" options="-parameters" />
       <module name="reserve-service" options="-parameters" />
-      <module name="room-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
       <module name="vehicle-service" options="-parameters" />
     </option>

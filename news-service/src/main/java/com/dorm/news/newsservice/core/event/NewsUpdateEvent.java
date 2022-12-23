@@ -1,5 +1,6 @@
 package com.dorm.news.newsservice.core.event;
 
+
 import lombok.Data;
 
 import java.util.ArrayList;
