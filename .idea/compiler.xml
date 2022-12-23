@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="contract-service" />
         <module name="user-service" />
-        <module name="dicovery-server" />
         <module name="file-service" />
         <module name="news-service" />
         <module name="payment-service" />
@@ -19,27 +18,21 @@
         <module name="api-gateway" />
         <module name="parcel-service" />
         <module name="report-service" />
-        <module name="room-service" />
         <module name="meter-service" />
         <module name="rent-service" />
       </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.24/13a394eed5c4f9efb2a6d956e2086f1d81e857d9/lombok-1.18.24.jar" />
+        </processorPath>
+        <module name="room-service-gradle.main" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="api-gateway" target="17" />
-      <module name="contract-service" target="17" />
-      <module name="dicovery-server" target="17" />
-      <module name="file-service" target="17" />
-      <module name="invoice-service" target="17" />
-      <module name="meter-service" target="17" />
-      <module name="news-service" target="17" />
-      <module name="parcel-service" target="17" />
-      <module name="payment-service" target="17" />
-      <module name="rent-service" target="17" />
-      <module name="report-service" target="17" />
-      <module name="reserve-service" target="17" />
-      <module name="room-service" target="17" />
-      <module name="user-service" target="17" />
-      <module name="vehicle-service" target="17" />
+      <module name="roomService" target="17" />
+      <module name="roomService.main" target="17" />
+      <module name="roomService.test" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -56,7 +49,6 @@
       <module name="rent-service" options="-parameters" />
       <module name="report-service" options="-parameters" />
       <module name="reserve-service" options="-parameters" />
-      <module name="room-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
       <module name="vehicle-service" options="-parameters" />
     </option>
